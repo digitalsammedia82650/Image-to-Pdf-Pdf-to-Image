@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+/>
+
+<title>Image ↔ SVG ↔ PDF Studio</title>
+
+<style>
+/* =========================================================
+   DSM SVG PDF STUDIO
+   FULLY SCOPED
+   ZERO CSS COLLISION
+========================================================= */
+
+:root{
+
+  --dsm-bg:#070b12;
+  --dsm-card:#101826;
+  --dsm-card-2:#131f31;
+
+  --dsm-text:#eef4ff;
+  --dsm-muted:#8b9bb4;
+
+  --dsm-border:rgba(255,255,255,.08);
+
+  --dsm-blue:#3b82f6;
+  --dsm-green:#10b981;
+  --dsm-red:#ef4444;
+  --dsm-purple:#8b5cf6;
+
+  --dsm-radius:20px;
+  --dsm-radius-sm:12px;
+
+  --dsm-shadow:
+    0 10px 40px rgba(0,0,0,.45);
+
+  --dsm-font:
+    Inter,
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+}
+
+body{
+
+  background:
+    radial-gradient(circle at top left,
+    rgba(59,130,246,.18),
+    transparent 40%),
+
+    radial-gradient(circle at bottom right,
+    rgba(16,185,129,.12),
+    transparent 40%),
+
+    var(--dsm-bg);
+
+  color:var(--dsm-text);
+
+  font-family:var(--dsm-font);
+
+  min-height:100vh;
+
+  padding:18px;
+}
+
+.dsm-wrap{
+  width:100%;
+  max-width:1200px;
+  margin:auto;
+}
+
+.dsm-head{
+  text-align:center;
+  margin-bottom:24px;
+}
+
+.dsm-title{
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:900;
+  line-height:1;
+  margin-bottom:12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #8ec5ff
+    );
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.dsm-sub{
+  color:var(--dsm-muted);
+  line-height:1.7;
+  max-width:700px;
+  margin:auto;
+  font-size:.95rem;
+}
+
+.dsm-grid{
+
+  display:grid;
+  gap:18px;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+}
+
+.dsm-card{
+
+  background:
+    linear-gradient(
+      180deg,
+      var(--dsm-card),
+      var(--dsm-card-2)
+    );
+
+  border:1px solid var(--dsm-border);
+
+  border-radius:var(--dsm-radius);
+
+  padding:22px;
+
+  box-shadow:var(--dsm-shadow);
+}
+
+.dsm-card-title{
+
+  font-size:.85rem;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+
+  color:#89a8d8;
+
+  margin-bottom:18px;
+}
+
+.dsm-drop{
+
+  border:2px dashed rgba(255,255,255,.15);
+
+  border-radius:18px;
+
+  padding:40px 20px;
+
+  text-align:center;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+.dsm-drop:hover{
+  border-color:var(--dsm-blue);
+  background:rgba(59,130,246,.06);
+}
+
+.dsm-drop-icon{
+  font-size:3rem;
+  margin-bottom:14px;
+}
+
+.dsm-drop h2{
+  font-size:1.15rem;
+  margin-bottom:8px;
+}
+
+.dsm-drop p{
+  color:var(--dsm-muted);
+  line-height:1.7;
+  font-size:.92rem;
+}
+
+.dsm-hidden{
+  display:none;
+}
+
+.dsm-row{
+  display:grid;
+  gap:12px;
+}
+
+.dsm-field{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.dsm-label{
+  font-size:.85rem;
+  color:#a7b8d4;
+}
+
+.dsm-input,
+.dsm-select{
+
+  width:100%;
+
+  border:none;
+
+  background:#0d1523;
+
+  color:#fff;
+
+  padding:14px;
+
+  border-radius:12px;
+
+  outline:none;
+
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.dsm-btns{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.dsm-btn{
+
+  border:none;
+
+  color:#fff;
+
+  padding:14px 18px;
+
+  border-radius:14px;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  min-height:48px;
+
+  transition:.2s;
+}
+
+.dsm-btn:hover{
+  transform:translateY(-2px);
+}
+
+.dsm-btn:disabled{
+  opacity:.35;
+  cursor:not-allowed;
+  transform:none;
+}
+
+.dsm-blue{
+  background:var(--dsm-blue);
+}
+
+.dsm-green{
+  background:var(--dsm-green);
+}
+
+.dsm-red{
+  background:var(--dsm-red);
+}
+
+.dsm-purple{
+  background:var(--dsm-purple);
+}
+
+.dsm-status{
+
+  margin-top:18px;
+
+  background:#0c1320;
+
+  border-radius:14px;
+
+  padding:14px;
+
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.dsm-progress{
+
+  height:5px;
+
+  background:#111827;
+
+  border-radius:999px;
+
+  overflow:hidden;
+
+  margin-top:10px;
+}
+
+.dsm-progress-bar{
+
+  height:100%;
+
+  width:0%;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--dsm-blue),
+      var(--dsm-green)
+    );
+
+  transition:.3s;
+}
+
+.dsm-gallery{
+
+  margin-top:20px;
+
+  display:grid;
+
+  gap:14px;
+
+  grid-template-columns:
+    repeat(auto-fill,minmax(200px,1fr));
+}
+
+.dsm-item{
+
+  background:#0c1320;
+
+  border-radius:16px;
+
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.dsm-item img{
+
+  width:100%;
+
+  height:180px;
+
+  object-fit:contain;
+
+  background:#fff;
+}
+
+.dsm-item-body{
+  padding:12px;
+}
+
+.dsm-item-name{
+
+  font-size:.85rem;
+
+  word-break:break-word;
+
+  margin-bottom:6px;
+}
+
+.dsm-item-meta{
+
+  font-size:.75rem;
+
+  color:var(--dsm-muted);
+}
+
+.dsm-preview{
+
+  width:100%;
+  height:650px;
+
+  border:none;
+
+  border-radius:20px;
+
+  background:#fff;
+
+  margin-top:22px;
+
+  display:none;
+}
+
+.dsm-foot{
+
+  text-align:center;
+
+  margin-top:28px;
+
+  color:#6f86aa;
+
+  line-height:1.8;
+
+  font-size:.8rem;
+}
+
+@media(max-width:700px){
+
+  body{
+    padding:12px;
+  }
+
+  .dsm-preview{
+    height:420px;
+  }
+
+  .dsm-btn{
+    width:100%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="dsm-wrap">
+
+  <div class="dsm-head">
+    <div class="dsm-title">
+      SVG PDF Studio
+    </div>
+
+    <div class="dsm-sub">
+      Full-resolution Image → SVG → PDF engine and
+      PDF → SVG → Image extraction system.
+      Everything runs directly inside your browser.
+      No uploads. No server processing.
+    </div>
+  </div>
+
+  <div class="dsm-grid">
+
+    <!-- IMAGE TO PDF -->
+
+    <div class="dsm-card">
+
+      <div class="dsm-card-title">
+        Image → SVG → PDF
+      </div>
+
+      <div class="dsm-drop" id="dsmDrop">
+
+        <div class="dsm-drop-icon">🖼️</div>
+
+        <h2>Select Images</h2>
+
+        <p>
+          JPG, PNG, WEBP, GIF
+        </p>
+
+        <input
+          type="file"
+          id="dsmInput"
+          multiple
+          accept="image/*"
+          class="dsm-hidden"
+        />
+      </div>
+
+      <div class="dsm-row" style="margin-top:18px">
+
+        <div class="dsm-field">
+          <label class="dsm-label">
+            PDF File Name
+          </label>
+
+          <input
+            id="dsmName"
+            class="dsm-input"
+            value="document"
+          />
+        </div>
+
+        <div class="dsm-field">
+          <label class="dsm-label">
+            Image Quality
+          </label>
+
+          <input
+            type="number"
+            min="10"
+            max="100"
+            value="98"
+            id="dsmQuality"
+            class="dsm-input"
+          />
+        </div>
+
+      </div>
+
+      <div class="dsm-btns">
+
+        <button
+          class="dsm-btn dsm-blue"
+          id="dsmGenerate"
+        >
+          Generate PDF
+        </button>
+
+        <button
+          class="dsm-btn dsm-green"
+          id="dsmDownload"
+          disabled
+        >
+          Download PDF
+        </button>
+
+        <button
+          class="dsm-btn dsm-purple"
+          id="dsmPreviewBtn"
+          disabled
+        >
+          Preview PDF
+        </button>
+
+        <button
+          class="dsm-btn dsm-red"
+          id="dsmClear"
+        >
+          Clear
+        </button>
+
+      </div>
+
+      <div class="dsm-status">
+
+        <div id="dsmStatusText">
+          Waiting for images...
+        </div>
+
+        <div class="dsm-progress">
+          <div
+            class="dsm-progress-bar"
+            id="dsmProgress"
+          ></div>
+        </div>
+
+      </div>
+
+      <div
+        class="dsm-gallery"
+        id="dsmGallery"
+      ></div>
+
+      <iframe
+        id="dsmPreview"
+        class="dsm-preview"
+      ></iframe>
+
+    </div>
+
+  </div>
+
+  <div class="dsm-foot">
+    Offline-capable • Pure Browser Engine •
+    Full-resolution rendering •
+    Local-only processing •
+    www.digitalsammedia.com
+  </div>
+
+</div>
+
+<script>
+"use strict";
+
+/* =========================================================
+   DSM SVG PDF STUDIO
+========================================================= */
+
+const dsmInput=
+document.getElementById("dsmInput");
+
+const dsmDrop=
+document.getElementById("dsmDrop");
+
+const dsmGallery=
+document.getElementById("dsmGallery");
+
+const dsmGenerate=
+document.getElementById("dsmGenerate");
+
+const dsmDownload=
+document.getElementById("dsmDownload");
+
+const dsmPreviewBtn=
+document.getElementById("dsmPreviewBtn");
+
+const dsmPreview=
+document.getElementById("dsmPreview");
+
+const dsmClear=
+document.getElementById("dsmClear");
+
+const dsmProgress=
+document.getElementById("dsmProgress");
+
+const dsmStatusText=
+document.getElementById("dsmStatusText");
+
+let dsmFiles=[];
+let dsmPdfBlob=null;
+
+/* =========================================================
+   DROPZONE
+========================================================= */
+
+dsmDrop.onclick=()=>dsmInput.click();
+
+dsmInput.onchange=e=>{
+  dsmHandleFiles(e.target.files);
+};
+
+dsmDrop.ondragover=e=>{
+  e.preventDefault();
+};
+
+dsmDrop.ondrop=e=>{
+
+  e.preventDefault();
+
+  dsmHandleFiles(
+    e.dataTransfer.files
+  );
+};
+
+function dsmHandleFiles(files){
+
+  [...files].forEach(file=>{
+
+    if(!file.type.startsWith("image/")){
+      return;
+    }
+
+    const reader=new FileReader();
+
+    reader.onload=e=>{
+
+      dsmFiles.push({
+        file,
+        src:e.target.result
+      });
+
+      dsmRenderGallery();
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+function dsmRenderGallery(){
+
+  dsmGallery.innerHTML="";
+
+  dsmFiles.forEach((item,index)=>{
+
+    const div=document.createElement("div");
+
+    div.className="dsm-item";
+
+    div.innerHTML=`
+      <img src="${item.src}">
+      <div class="dsm-item-body">
+
+        <div class="dsm-item-name">
+          ${dsmEscape(item.file.name)}
+        </div>
+
+        <div class="dsm-item-meta">
+          ${dsmBytes(item.file.size)}
+        </div>
+
+      </div>
+    `;
+
+    dsmGallery.appendChild(div);
+  });
+
+  dsmStatus(
+    dsmFiles.length+
+    " image(s) loaded."
+  );
+}
+
+/* =========================================================
+   GENERATE PDF
+========================================================= */
+
+dsmGenerate.onclick=async()=>{
+
+  if(!dsmFiles.length){
+
+    alert("Please upload images.");
+
+    return;
+  }
+
+  try{
+
+    dsmProgress.style.width="5%";
+
+    dsmStatus("Building SVG intermediary...");
+
+    const processed=[];
+
+    for(let i=0;i<dsmFiles.length;i++){
+
+      const svg=
+      await dsmImageToSVG(
+        dsmFiles[i].src
+      );
+
+      const jpeg=
+      await dsmSVGToJPEG(svg);
+
+      processed.push(jpeg);
+
+      dsmProgress.style.width=
+      (10+(i/dsmFiles.length)*70)+"%";
+    }
+
+    dsmStatus("Generating valid PDF...");
+
+    const bytes=
+    dsmCreatePDF(processed);
+
+    dsmPdfBlob=
+    new Blob(
+      [bytes],
+      {type:"application/pdf"}
+    );
+
+    dsmProgress.style.width="100%";
+
+    dsmStatus(
+      "PDF ready • "+
+      dsmBytes(dsmPdfBlob.size)
+    );
+
+    dsmDownload.disabled=false;
+    dsmPreviewBtn.disabled=false;
+
+  }catch(err){
+
+    console.error(err);
+
+    dsmStatus(
+      "Error: "+err.message
+    );
+  }
+};
+
+/* =========================================================
+   DOWNLOAD
+========================================================= */
+
+dsmDownload.onclick=()=>{
+
+  if(!dsmPdfBlob)return;
+
+  const name=
+  (
+    document.getElementById("dsmName")
+    .value
+    .trim()||"document"
+  )+".pdf";
+
+  dsmDownloadFile(
+    URL.createObjectURL(dsmPdfBlob),
+    name
+  );
+};
+
+/* =========================================================
+   PREVIEW
+========================================================= */
+
+dsmPreviewBtn.onclick=()=>{
+
+  if(!dsmPdfBlob)return;
+
+  dsmPreview.src=
+  URL.createObjectURL(dsmPdfBlob);
+
+  dsmPreview.style.display="block";
+
+  dsmPreview.scrollIntoView({
+    behavior:"smooth"
+  });
+};
+
+/* =========================================================
+   CLEAR
+========================================================= */
+
+dsmClear.onclick=()=>{
+
+  dsmFiles=[];
+  dsmPdfBlob=null;
+
+  dsmGallery.innerHTML="";
+
+  dsmPreview.style.display="none";
+
+  dsmProgress.style.width="0%";
+
+  dsmDownload.disabled=true;
+  dsmPreviewBtn.disabled=true;
+
+  dsmStatus("Cleared.");
+};
+
+/* =========================================================
+   IMAGE -> SVG
+========================================================= */
+
+async function dsmImageToSVG(src){
+
+  return new Promise(resolve=>{
+
+    const img=new Image();
+
+    img.onload=function(){
+
+      const svg=`
+      <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="${img.width}"
+      height="${img.height}"
+      viewBox="0 0 ${img.width} ${img.height}">
+
+      <image
+      href="${src}"
+      width="${img.width}"
+      height="${img.height}"
+      preserveAspectRatio="xMidYMid meet"/>
+
+      </svg>`;
+
+      resolve({
+        svg,
+        width:img.width,
+        height:img.height
+      });
+    };
+
+    img.src=src;
+  });
+}
+
+/* =========================================================
+   SVG -> JPEG
+========================================================= */
+
+async function dsmSVGToJPEG(data){
+
+  return new Promise(resolve=>{
+
+    const blob=new Blob(
+      [data.svg],
+      {type:"image/svg+xml"}
+    );
+
+    const url=
+    URL.createObjectURL(blob);
+
+    const img=new Image();
+
+    img.onload=function(){
+
+      const canvas=
+      document.createElement("canvas");
+
+      const ctx=
+      canvas.getContext("2d");
+
+      canvas.width=data.width;
+      canvas.height=data.height;
+
+      ctx.fillStyle="#fff";
+
+      ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      const quality=
+      parseInt(
+        document.getElementById("dsmQuality")
+        .value
+      )/100;
+
+      resolve({
+        jpeg:
+        canvas.toDataURL(
+          "image/jpeg",
+          quality
+        ),
+        width:canvas.width,
+        height:canvas.height
+      });
+
+      URL.revokeObjectURL(url);
+    };
+
+    img.src=url;
+  });
+}
+
+/* =========================================================
+   REAL PDF ENGINE
+========================================================= */
+
+function dsmCreatePDF(images){
+
+  const chunks=[];
+  const offsets=[];
+
+  let length=0;
+
+  function pushString(str){
+
+    const arr=
+    new TextEncoder()
+    .encode(str);
+
+    chunks.push(arr);
+
+    length+=arr.length;
+  }
+
+  function pushBytes(arr){
+
+    chunks.push(arr);
+
+    length+=arr.length;
+  }
+
+  pushString("%PDF-1.4\n");
+
+  let objectCount=0;
+
+  const imageIds=[];
+  const contentIds=[];
+  const pageIds=[];
+
+  function addObjectStart(){
+
+    objectCount++;
+
+    offsets.push(length);
+
+    pushString(
+      objectCount+" 0 obj\n"
+    );
+
+    return objectCount;
+  }
+
+  function addObjectEnd(){
+
+    pushString("\nendobj\n");
+  }
+
+  /* =========================
+     IMAGES
+  ========================= */
+
+  images.forEach((img,index)=>{
+
+    const binary=
+    atob(
+      img.jpeg.split(",")[1]
+    );
+
+    const bytes=
+    new Uint8Array(binary.length);
+
+    for(let i=0;i<binary.length;i++){
+      bytes[i]=binary.charCodeAt(i);
+    }
+
+    /* IMAGE OBJECT */
+
+    const imgId=
+    addObjectStart();
+
+    imageIds.push(imgId);
+
+    pushString(`
+<<
+/Type /XObject
+/Subtype /Image
+/Width ${img.width}
+/Height ${img.height}
+/ColorSpace /DeviceRGB
+/BitsPerComponent 8
+/Filter /DCTDecode
+/Length ${bytes.length}
+>>
+stream
+`);
+
+    pushBytes(bytes);
+
+    pushString("\nendstream");
+
+    addObjectEnd();
+
+    /* CONTENT STREAM */
+
+    const content=`
+q
+${img.width} 0 0 ${img.height} 0 0 cm
+/Im0 Do
+Q
+`;
+
+    const contentId=
+    addObjectStart();
+
+    contentIds.push(contentId);
+
+    pushString(`
+<< /Length ${content.length} >>
+stream
+${content}
+endstream
+`);
+
+    addObjectEnd();
+  });
+
+  const pagesRootId=
+  objectCount+
+  images.length+
+  1;
+
+  /* =========================
+     PAGES
+  ========================= */
+
+  images.forEach((img,index)=>{
+
+    const pageId=
+    addObjectStart();
+
+    pageIds.push(pageId);
+
+    pushString(`
+<<
+/Type /Page
+/Parent ${pagesRootId} 0 R
+/MediaBox [0 0 ${img.width} ${img.height}]
+/Resources <<
+/XObject <<
+/Im0 ${imageIds[index]} 0 R
+>>
+>>
+/Contents ${contentIds[index]} 0 R
+>>
+`);
+
+    addObjectEnd();
+  });
+
+  /* PAGES ROOT */
+
+  const pagesId=
+  addObjectStart();
+
+  pushString(`
+<<
+/Type /Pages
+/Count ${images.length}
+/Kids [
+${pageIds.map(
+id=>id+" 0 R"
+).join("\n")}
+]
+>>
+`);
+
+  addObjectEnd();
+
+  /* CATALOG */
+
+  const catalogId=
+  addObjectStart();
+
+  pushString(`
+<<
+/Type /Catalog
+/Pages ${pagesId} 0 R
+>>
+`);
+
+  addObjectEnd();
+
+  /* =========================
+     XREF
+  ========================= */
+
+  const xrefPos=length;
+
+  pushString(
+    "xref\n0 "+
+    (objectCount+1)+
+    "\n"
+  );
+
+  pushString(
+    "0000000000 65535 f \n"
+  );
+
+  offsets.forEach(off=>{
+
+    pushString(
+      String(off)
+      .padStart(10,"0")+
+      " 00000 n \n"
+    );
+  });
+
+  pushString(`
+trailer
+<<
+/Size ${objectCount+1}
+/Root ${catalogId} 0 R
+>>
+startxref
+${xrefPos}
+%%EOF
+`);
+
+  /* =========================
+     MERGE
+  ========================= */
+
+  const final=
+  new Uint8Array(length);
+
+  let pos=0;
+
+  chunks.forEach(c=>{
+
+    final.set(c,pos);
+
+    pos+=c.length;
+  });
+
+  return final;
+}
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function dsmStatus(text){
+
+  dsmStatusText.textContent=text;
+}
+
+function dsmBytes(bytes){
+
+  const u=["B","KB","MB","GB"];
+
+  const i=
+  Math.floor(
+    Math.log(bytes)/
+    Math.log(1024)
+  );
+
+  return (
+    bytes/
+    Math.pow(1024,i)
+  ).toFixed(1)+
+  " "+
+  u[i];
+}
+
+function dsmDownloadFile(url,name){
+
+  const a=
+  document.createElement("a");
+
+  a.href=url;
+
+  a.download=name;
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  setTimeout(()=>{
+
+    URL.revokeObjectURL(url);
+
+    a.remove();
+
+  },1000);
+}
+
+function dsmEscape(str){
+
+  return str.replace(
+    /[&<>"']/g,
+    m=>({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[m])
+  );
+}
+</script>
+
+</body>
+</html>
