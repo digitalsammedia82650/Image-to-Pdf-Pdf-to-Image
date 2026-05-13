@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
-/>
+<meta charset="UTF-8">
 
-<title>Image ↔ SVG ↔ PDF Studio</title>
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+
+<title>DSM SVG PDF Studio</title>
 
 <style>
 /* =========================================================
    DSM SVG PDF STUDIO
    FULLY SCOPED
-   ZERO CSS COLLISION
 ========================================================= */
 
 :root{
 
   --dsm-bg:#070b12;
   --dsm-card:#101826;
-  --dsm-card-2:#131f31;
+  --dsm-card2:#121d2d;
 
   --dsm-text:#eef4ff;
-  --dsm-muted:#8b9bb4;
+  --dsm-muted:#8ea0bf;
 
   --dsm-border:rgba(255,255,255,.08);
 
@@ -32,11 +31,11 @@
   --dsm-red:#ef4444;
   --dsm-purple:#8b5cf6;
 
-  --dsm-radius:20px;
-  --dsm-radius-sm:12px;
+  --dsm-radius:22px;
+  --dsm-radius-sm:14px;
 
   --dsm-shadow:
-    0 10px 40px rgba(0,0,0,.45);
+    0 10px 40px rgba(0,0,0,.4);
 
   --dsm-font:
     Inter,
@@ -58,15 +57,19 @@ html{
 body{
 
   background:
-    radial-gradient(circle at top left,
-    rgba(59,130,246,.18),
-    transparent 40%),
+  radial-gradient(
+    circle at top left,
+    rgba(59,130,246,.15),
+    transparent 35%
+  ),
 
-    radial-gradient(circle at bottom right,
+  radial-gradient(
+    circle at bottom right,
     rgba(16,185,129,.12),
-    transparent 40%),
+    transparent 35%
+  ),
 
-    var(--dsm-bg);
+  var(--dsm-bg);
 
   color:var(--dsm-text);
 
@@ -78,58 +81,73 @@ body{
 }
 
 .dsm-wrap{
+
   width:100%;
-  max-width:1200px;
+  max-width:1300px;
+
   margin:auto;
 }
 
 .dsm-head{
+
   text-align:center;
+
   margin-bottom:24px;
 }
 
 .dsm-title{
-  font-size:clamp(2rem,6vw,4rem);
+
+  font-size:
+  clamp(2.2rem,7vw,4.5rem);
+
   font-weight:900;
+
   line-height:1;
-  margin-bottom:12px;
+
+  margin-bottom:14px;
 
   background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #8ec5ff
-    );
+  linear-gradient(
+    135deg,
+    #fff,
+    #8ec5ff
+  );
 
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
 .dsm-sub{
-  color:var(--dsm-muted);
-  line-height:1.7;
-  max-width:700px;
+
+  max-width:800px;
+
   margin:auto;
+
+  color:var(--dsm-muted);
+
+  line-height:1.8;
+
   font-size:.95rem;
 }
 
 .dsm-grid{
 
   display:grid;
-  gap:18px;
 
   grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
+  repeat(auto-fit,minmax(350px,1fr));
+
+  gap:18px;
 }
 
 .dsm-card{
 
   background:
-    linear-gradient(
-      180deg,
-      var(--dsm-card),
-      var(--dsm-card-2)
-    );
+  linear-gradient(
+    180deg,
+    var(--dsm-card),
+    var(--dsm-card2)
+  );
 
   border:1px solid var(--dsm-border);
 
@@ -143,21 +161,23 @@ body{
 .dsm-card-title{
 
   font-size:.85rem;
-  text-transform:uppercase;
+
   letter-spacing:.15em;
 
-  color:#89a8d8;
+  text-transform:uppercase;
+
+  color:#90b6ff;
 
   margin-bottom:18px;
 }
 
 .dsm-drop{
 
-  border:2px dashed rgba(255,255,255,.15);
+  border:2px dashed rgba(255,255,255,.14);
 
   border-radius:18px;
 
-  padding:40px 20px;
+  padding:42px 20px;
 
   text-align:center;
 
@@ -167,23 +187,33 @@ body{
 }
 
 .dsm-drop:hover{
+
   border-color:var(--dsm-blue);
-  background:rgba(59,130,246,.06);
+
+  background:
+  rgba(59,130,246,.05);
 }
 
 .dsm-drop-icon{
+
   font-size:3rem;
+
   margin-bottom:14px;
 }
 
 .dsm-drop h2{
+
   font-size:1.15rem;
+
   margin-bottom:8px;
 }
 
 .dsm-drop p{
+
   color:var(--dsm-muted);
+
   line-height:1.7;
+
   font-size:.92rem;
 }
 
@@ -192,19 +222,28 @@ body{
 }
 
 .dsm-row{
+
   display:grid;
+
   gap:12px;
+
+  margin-top:18px;
 }
 
 .dsm-field{
+
   display:flex;
+
   flex-direction:column;
+
   gap:8px;
 }
 
 .dsm-label{
+
   font-size:.85rem;
-  color:#a7b8d4;
+
+  color:#a8b8d6;
 }
 
 .dsm-input,
@@ -212,25 +251,29 @@ body{
 
   width:100%;
 
+  padding:14px;
+
   border:none;
 
-  background:#0d1523;
+  border-radius:14px;
+
+  background:#0d1522;
 
   color:#fff;
 
-  padding:14px;
-
-  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
 
   outline:none;
-
-  border:1px solid rgba(255,255,255,.08);
 }
 
 .dsm-btns{
+
   display:flex;
-  gap:10px;
+
   flex-wrap:wrap;
+
+  gap:10px;
+
   margin-top:18px;
 }
 
@@ -250,7 +293,7 @@ body{
 
   min-height:48px;
 
-  transition:.2s;
+  transition:.25s;
 }
 
 .dsm-btn:hover{
@@ -258,8 +301,11 @@ body{
 }
 
 .dsm-btn:disabled{
+
   opacity:.35;
+
   cursor:not-allowed;
+
   transform:none;
 }
 
@@ -285,7 +331,7 @@ body{
 
   background:#0c1320;
 
-  border-radius:14px;
+  border-radius:16px;
 
   padding:14px;
 
@@ -307,30 +353,30 @@ body{
 
 .dsm-progress-bar{
 
-  height:100%;
-
   width:0%;
 
+  height:100%;
+
   background:
-    linear-gradient(
-      90deg,
-      var(--dsm-blue),
-      var(--dsm-green)
-    );
+  linear-gradient(
+    90deg,
+    var(--dsm-blue),
+    var(--dsm-green)
+  );
 
   transition:.3s;
 }
 
 .dsm-gallery{
 
-  margin-top:20px;
-
   display:grid;
+
+  grid-template-columns:
+  repeat(auto-fill,minmax(190px,1fr));
 
   gap:14px;
 
-  grid-template-columns:
-    repeat(auto-fill,minmax(200px,1fr));
+  margin-top:20px;
 }
 
 .dsm-item{
@@ -348,7 +394,7 @@ body{
 
   width:100%;
 
-  height:180px;
+  height:190px;
 
   object-fit:contain;
 
@@ -361,23 +407,24 @@ body{
 
 .dsm-item-name{
 
-  font-size:.85rem;
+  font-size:.82rem;
 
   word-break:break-word;
 
-  margin-bottom:6px;
+  margin-bottom:5px;
 }
 
 .dsm-item-meta{
 
-  font-size:.75rem;
-
   color:var(--dsm-muted);
+
+  font-size:.75rem;
 }
 
 .dsm-preview{
 
   width:100%;
+
   height:650px;
 
   border:none;
@@ -395,13 +442,13 @@ body{
 
   text-align:center;
 
-  margin-top:28px;
+  margin-top:30px;
 
-  color:#6f86aa;
+  color:#6e83a5;
 
   line-height:1.8;
 
-  font-size:.8rem;
+  font-size:.82rem;
 }
 
 @media(max-width:700px){
@@ -426,21 +473,25 @@ body{
 <div class="dsm-wrap">
 
   <div class="dsm-head">
+
     <div class="dsm-title">
       SVG PDF Studio
     </div>
 
     <div class="dsm-sub">
-      Full-resolution Image → SVG → PDF engine and
-      PDF → SVG → Image extraction system.
-      Everything runs directly inside your browser.
-      No uploads. No server processing.
+      Image → SVG → PDF and
+      PDF → SVG → Image converter.
+      Full-resolution processing directly
+      inside your browser with no uploads.
     </div>
+
   </div>
 
   <div class="dsm-grid">
 
-    <!-- IMAGE TO PDF -->
+    <!-- =====================================================
+         IMAGE TO PDF
+    ====================================================== -->
 
     <div class="dsm-card">
 
@@ -448,52 +499,60 @@ body{
         Image → SVG → PDF
       </div>
 
-      <div class="dsm-drop" id="dsmDrop">
+      <div
+      class="dsm-drop"
+      id="dsmDrop">
 
-        <div class="dsm-drop-icon">🖼️</div>
+        <div class="dsm-drop-icon">
+          🖼️
+        </div>
 
-        <h2>Select Images</h2>
+        <h2>
+          Select Images
+        </h2>
 
         <p>
           JPG, PNG, WEBP, GIF
         </p>
 
         <input
-          type="file"
-          id="dsmInput"
-          multiple
-          accept="image/*"
-          class="dsm-hidden"
-        />
+        type="file"
+        id="dsmInput"
+        multiple
+        accept="image/*"
+        class="dsm-hidden">
+
       </div>
 
-      <div class="dsm-row" style="margin-top:18px">
+      <div class="dsm-row">
 
         <div class="dsm-field">
+
           <label class="dsm-label">
             PDF File Name
           </label>
 
           <input
-            id="dsmName"
-            class="dsm-input"
-            value="document"
-          />
+          class="dsm-input"
+          id="dsmName"
+          value="document">
+
         </div>
 
         <div class="dsm-field">
+
           <label class="dsm-label">
-            Image Quality
+            JPEG Quality
           </label>
 
           <input
-            type="number"
-            min="10"
-            max="100"
-            value="98"
-            id="dsmQuality"
-            class="dsm-input"
-          />
+          type="number"
+          min="10"
+          max="100"
+          value="98"
+          id="dsmQuality"
+          class="dsm-input">
+
         </div>
 
       </div>
@@ -501,32 +560,28 @@ body{
       <div class="dsm-btns">
 
         <button
-          class="dsm-btn dsm-blue"
-          id="dsmGenerate"
-        >
+        class="dsm-btn dsm-blue"
+        id="dsmGenerate">
           Generate PDF
         </button>
 
         <button
-          class="dsm-btn dsm-green"
-          id="dsmDownload"
-          disabled
-        >
+        class="dsm-btn dsm-green"
+        id="dsmDownload"
+        disabled>
           Download PDF
         </button>
 
         <button
-          class="dsm-btn dsm-purple"
-          id="dsmPreviewBtn"
-          disabled
-        >
+        class="dsm-btn dsm-purple"
+        id="dsmPreviewBtn"
+        disabled>
           Preview PDF
         </button>
 
         <button
-          class="dsm-btn dsm-red"
-          id="dsmClear"
-        >
+        class="dsm-btn dsm-red"
+        id="dsmClear">
           Clear
         </button>
 
@@ -534,38 +589,168 @@ body{
 
       <div class="dsm-status">
 
-        <div id="dsmStatusText">
+        <div id="dsmStatus">
           Waiting for images...
         </div>
 
         <div class="dsm-progress">
+
           <div
-            class="dsm-progress-bar"
-            id="dsmProgress"
-          ></div>
+          class="dsm-progress-bar"
+          id="dsmProgress"></div>
+
         </div>
 
       </div>
 
       <div
-        class="dsm-gallery"
-        id="dsmGallery"
-      ></div>
+      class="dsm-gallery"
+      id="dsmGallery"></div>
 
       <iframe
-        id="dsmPreview"
-        class="dsm-preview"
-      ></iframe>
+      id="dsmPreview"
+      class="dsm-preview"></iframe>
+
+    </div>
+
+    <!-- =====================================================
+         PDF TO IMAGE
+    ====================================================== -->
+
+    <div class="dsm-card">
+
+      <div class="dsm-card-title">
+        PDF → SVG → Image
+      </div>
+
+      <div
+      class="dsm-drop"
+      id="dsmPdfDrop">
+
+        <div class="dsm-drop-icon">
+          📄
+        </div>
+
+        <h2>
+          Select PDF
+        </h2>
+
+        <p>
+          Extract full-resolution pages
+        </p>
+
+        <input
+        type="file"
+        id="dsmPdfInput"
+        accept="application/pdf"
+        class="dsm-hidden">
+
+      </div>
+
+      <div class="dsm-row">
+
+        <div class="dsm-field">
+
+          <label class="dsm-label">
+            Export Format
+          </label>
+
+          <select
+          id="dsmPdfFormat"
+          class="dsm-select">
+
+            <option value="image/png">
+              PNG
+            </option>
+
+            <option value="image/jpeg">
+              JPEG
+            </option>
+
+            <option value="image/webp">
+              WEBP
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="dsm-field">
+
+          <label class="dsm-label">
+            Render Scale
+          </label>
+
+          <select
+          id="dsmPdfScale"
+          class="dsm-select">
+
+            <option value="1">
+              1×
+            </option>
+
+            <option value="2" selected>
+              2×
+            </option>
+
+            <option value="3">
+              3×
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="dsm-btns">
+
+        <button
+        class="dsm-btn dsm-purple"
+        id="dsmPdfExtract"
+        disabled>
+          Extract Pages
+        </button>
+
+        <button
+        class="dsm-btn dsm-red"
+        id="dsmPdfClear">
+          Clear
+        </button>
+
+      </div>
+
+      <div class="dsm-status">
+
+        <div id="dsmPdfStatus">
+          Waiting for PDF...
+        </div>
+
+        <div class="dsm-progress">
+
+          <div
+          class="dsm-progress-bar"
+          id="dsmPdfProgress"></div>
+
+        </div>
+
+      </div>
+
+      <div
+      class="dsm-gallery"
+      id="dsmPdfGallery"></div>
 
     </div>
 
   </div>
 
   <div class="dsm-foot">
-    Offline-capable • Pure Browser Engine •
-    Full-resolution rendering •
+
     Local-only processing •
+    Full-resolution rendering •
+    SVG intermediary architecture •
     www.digitalsammedia.com
+
   </div>
 
 </div>
@@ -574,7 +759,7 @@ body{
 "use strict";
 
 /* =========================================================
-   DSM SVG PDF STUDIO
+   IMAGE → PDF
 ========================================================= */
 
 const dsmInput=
@@ -601,23 +786,19 @@ document.getElementById("dsmPreview");
 const dsmClear=
 document.getElementById("dsmClear");
 
+const dsmStatus=
+document.getElementById("dsmStatus");
+
 const dsmProgress=
 document.getElementById("dsmProgress");
-
-const dsmStatusText=
-document.getElementById("dsmStatusText");
 
 let dsmFiles=[];
 let dsmPdfBlob=null;
 
-/* =========================================================
-   DROPZONE
-========================================================= */
+/* ========================================================= */
 
-dsmDrop.onclick=()=>dsmInput.click();
-
-dsmInput.onchange=e=>{
-  dsmHandleFiles(e.target.files);
+dsmDrop.onclick=()=>{
+  dsmInput.click();
 };
 
 dsmDrop.ondragover=e=>{
@@ -631,6 +812,10 @@ dsmDrop.ondrop=e=>{
   dsmHandleFiles(
     e.dataTransfer.files
   );
+};
+
+dsmInput.onchange=e=>{
+  dsmHandleFiles(e.target.files);
 };
 
 function dsmHandleFiles(files){
@@ -657,17 +842,14 @@ function dsmHandleFiles(files){
   });
 }
 
-/* =========================================================
-   GALLERY
-========================================================= */
-
 function dsmRenderGallery(){
 
   dsmGallery.innerHTML="";
 
-  dsmFiles.forEach((item,index)=>{
+  dsmFiles.forEach(item=>{
 
-    const div=document.createElement("div");
+    const div=
+    document.createElement("div");
 
     div.className="dsm-item";
 
@@ -689,10 +871,9 @@ function dsmRenderGallery(){
     dsmGallery.appendChild(div);
   });
 
-  dsmStatus(
-    dsmFiles.length+
-    " image(s) loaded."
-  );
+  dsmStatus.textContent=
+  dsmFiles.length+
+  " image(s) loaded.";
 }
 
 /* =========================================================
@@ -703,7 +884,7 @@ dsmGenerate.onclick=async()=>{
 
   if(!dsmFiles.length){
 
-    alert("Please upload images.");
+    alert("Upload images first.");
 
     return;
   }
@@ -712,9 +893,10 @@ dsmGenerate.onclick=async()=>{
 
     dsmProgress.style.width="5%";
 
-    dsmStatus("Building SVG intermediary...");
+    dsmStatus.textContent=
+    "Processing images...";
 
-    const processed=[];
+    const pages=[];
 
     for(let i=0;i<dsmFiles.length;i++){
 
@@ -723,32 +905,31 @@ dsmGenerate.onclick=async()=>{
         dsmFiles[i].src
       );
 
-      const jpeg=
+      const jpg=
       await dsmSVGToJPEG(svg);
 
-      processed.push(jpeg);
+      pages.push(jpg);
 
       dsmProgress.style.width=
-      (10+(i/dsmFiles.length)*70)+"%";
+      ((i/dsmFiles.length)*80)+"%";
     }
 
-    dsmStatus("Generating valid PDF...");
+    dsmStatus.textContent=
+    "Generating PDF...";
 
-    const bytes=
-    dsmCreatePDF(processed);
+    const pdfBytes=
+    dsmCreatePDF(pages);
 
     dsmPdfBlob=
     new Blob(
-      [bytes],
+      [pdfBytes],
       {type:"application/pdf"}
     );
 
     dsmProgress.style.width="100%";
 
-    dsmStatus(
-      "PDF ready • "+
-      dsmBytes(dsmPdfBlob.size)
-    );
+    dsmStatus.textContent=
+    "PDF ready.";
 
     dsmDownload.disabled=false;
     dsmPreviewBtn.disabled=false;
@@ -757,15 +938,12 @@ dsmGenerate.onclick=async()=>{
 
     console.error(err);
 
-    dsmStatus(
-      "Error: "+err.message
-    );
+    dsmStatus.textContent=
+    "Error: "+err.message;
   }
 };
 
-/* =========================================================
-   DOWNLOAD
-========================================================= */
+/* ========================================================= */
 
 dsmDownload.onclick=()=>{
 
@@ -784,10 +962,6 @@ dsmDownload.onclick=()=>{
   );
 };
 
-/* =========================================================
-   PREVIEW
-========================================================= */
-
 dsmPreviewBtn.onclick=()=>{
 
   if(!dsmPdfBlob)return;
@@ -796,15 +970,7 @@ dsmPreviewBtn.onclick=()=>{
   URL.createObjectURL(dsmPdfBlob);
 
   dsmPreview.style.display="block";
-
-  dsmPreview.scrollIntoView({
-    behavior:"smooth"
-  });
 };
-
-/* =========================================================
-   CLEAR
-========================================================= */
 
 dsmClear.onclick=()=>{
 
@@ -813,18 +979,19 @@ dsmClear.onclick=()=>{
 
   dsmGallery.innerHTML="";
 
-  dsmPreview.style.display="none";
-
   dsmProgress.style.width="0%";
+
+  dsmPreview.style.display="none";
 
   dsmDownload.disabled=true;
   dsmPreviewBtn.disabled=true;
 
-  dsmStatus("Cleared.");
+  dsmStatus.textContent=
+  "Cleared.";
 };
 
 /* =========================================================
-   IMAGE -> SVG
+   IMAGE → SVG
 ========================================================= */
 
 async function dsmImageToSVG(src){
@@ -845,8 +1012,7 @@ async function dsmImageToSVG(src){
       <image
       href="${src}"
       width="${img.width}"
-      height="${img.height}"
-      preserveAspectRatio="xMidYMid meet"/>
+      height="${img.height}"/>
 
       </svg>`;
 
@@ -862,14 +1028,15 @@ async function dsmImageToSVG(src){
 }
 
 /* =========================================================
-   SVG -> JPEG
+   SVG → JPEG
 ========================================================= */
 
 async function dsmSVGToJPEG(data){
 
   return new Promise(resolve=>{
 
-    const blob=new Blob(
+    const blob=
+    new Blob(
       [data.svg],
       {type:"image/svg+xml"}
     );
@@ -902,9 +1069,7 @@ async function dsmSVGToJPEG(data){
       ctx.drawImage(
         img,
         0,
-        0,
-        canvas.width,
-        canvas.height
+        0
       );
 
       const quality=
@@ -943,20 +1108,20 @@ function dsmCreatePDF(images){
 
   function pushString(str){
 
-    const arr=
+    const bytes=
     new TextEncoder()
     .encode(str);
 
-    chunks.push(arr);
+    chunks.push(bytes);
 
-    length+=arr.length;
+    length+=bytes.length;
   }
 
-  function pushBytes(arr){
+  function pushBytes(bytes){
 
-    chunks.push(arr);
+    chunks.push(bytes);
 
-    length+=arr.length;
+    length+=bytes.length;
   }
 
   pushString("%PDF-1.4\n");
@@ -967,7 +1132,7 @@ function dsmCreatePDF(images){
   const contentIds=[];
   const pageIds=[];
 
-  function addObjectStart(){
+  function startObject(){
 
     objectCount++;
 
@@ -980,14 +1145,10 @@ function dsmCreatePDF(images){
     return objectCount;
   }
 
-  function addObjectEnd(){
+  function endObject(){
 
     pushString("\nendobj\n");
   }
-
-  /* =========================
-     IMAGES
-  ========================= */
 
   images.forEach((img,index)=>{
 
@@ -1003,12 +1164,10 @@ function dsmCreatePDF(images){
       bytes[i]=binary.charCodeAt(i);
     }
 
-    /* IMAGE OBJECT */
+    const imageId=
+    startObject();
 
-    const imgId=
-    addObjectStart();
-
-    imageIds.push(imgId);
+    imageIds.push(imageId);
 
     pushString(`
 <<
@@ -1026,11 +1185,11 @@ stream
 
     pushBytes(bytes);
 
-    pushString("\nendstream");
+    pushString(`
+endstream
+`);
 
-    addObjectEnd();
-
-    /* CONTENT STREAM */
+    endObject();
 
     const content=`
 q
@@ -1040,7 +1199,7 @@ Q
 `;
 
     const contentId=
-    addObjectStart();
+    startObject();
 
     contentIds.push(contentId);
 
@@ -1051,7 +1210,7 @@ ${content}
 endstream
 `);
 
-    addObjectEnd();
+    endObject();
   });
 
   const pagesRootId=
@@ -1059,14 +1218,10 @@ endstream
   images.length+
   1;
 
-  /* =========================
-     PAGES
-  ========================= */
-
   images.forEach((img,index)=>{
 
     const pageId=
-    addObjectStart();
+    startObject();
 
     pageIds.push(pageId);
 
@@ -1084,13 +1239,11 @@ endstream
 >>
 `);
 
-    addObjectEnd();
+    endObject();
   });
 
-  /* PAGES ROOT */
-
   const pagesId=
-  addObjectStart();
+  startObject();
 
   pushString(`
 <<
@@ -1104,12 +1257,10 @@ id=>id+" 0 R"
 >>
 `);
 
-  addObjectEnd();
-
-  /* CATALOG */
+  endObject();
 
   const catalogId=
-  addObjectStart();
+  startObject();
 
   pushString(`
 <<
@@ -1118,13 +1269,9 @@ id=>id+" 0 R"
 >>
 `);
 
-  addObjectEnd();
+  endObject();
 
-  /* =========================
-     XREF
-  ========================= */
-
-  const xrefPos=length;
+  const xrefOffset=length;
 
   pushString(
     "xref\n0 "+
@@ -1136,10 +1283,10 @@ id=>id+" 0 R"
     "0000000000 65535 f \n"
   );
 
-  offsets.forEach(off=>{
+  offsets.forEach(offset=>{
 
     pushString(
-      String(off)
+      String(offset)
       .padStart(10,"0")+
       " 00000 n \n"
     );
@@ -1152,37 +1299,299 @@ trailer
 /Root ${catalogId} 0 R
 >>
 startxref
-${xrefPos}
+${xrefOffset}
 %%EOF
 `);
-
-  /* =========================
-     MERGE
-  ========================= */
 
   const final=
   new Uint8Array(length);
 
   let pos=0;
 
-  chunks.forEach(c=>{
+  chunks.forEach(chunk=>{
 
-    final.set(c,pos);
+    final.set(chunk,pos);
 
-    pos+=c.length;
+    pos+=chunk.length;
   });
 
   return final;
 }
 
 /* =========================================================
-   HELPERS
+   PDF → IMAGE
 ========================================================= */
 
-function dsmStatus(text){
+const dsmPdfInput=
+document.getElementById("dsmPdfInput");
 
-  dsmStatusText.textContent=text;
+const dsmPdfDrop=
+document.getElementById("dsmPdfDrop");
+
+const dsmPdfExtract=
+document.getElementById("dsmPdfExtract");
+
+const dsmPdfClear=
+document.getElementById("dsmPdfClear");
+
+const dsmPdfGallery=
+document.getElementById("dsmPdfGallery");
+
+const dsmPdfStatus=
+document.getElementById("dsmPdfStatus");
+
+const dsmPdfProgress=
+document.getElementById("dsmPdfProgress");
+
+let dsmPdfFile=null;
+let dsmPdfPages=[];
+
+/* ========================================================= */
+
+async function dsmLoadPDFJS(){
+
+  if(window.pdfjsLib){
+    return;
+  }
+
+  await new Promise((resolve,reject)=>{
+
+    const script=
+    document.createElement("script");
+
+    script.src=
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+
+    script.onload=resolve;
+
+    script.onerror=reject;
+
+    document.head.appendChild(script);
+  });
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc=
+  "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 }
+
+/* ========================================================= */
+
+dsmPdfDrop.onclick=()=>{
+  dsmPdfInput.click();
+};
+
+dsmPdfDrop.ondragover=e=>{
+  e.preventDefault();
+};
+
+dsmPdfDrop.ondrop=e=>{
+
+  e.preventDefault();
+
+  const file=
+  e.dataTransfer.files[0];
+
+  if(
+    file &&
+    file.type==="application/pdf"
+  ){
+
+    dsmPdfFile=file;
+
+    dsmPdfExtract.disabled=false;
+
+    dsmPdfStatus.textContent=
+    file.name+" loaded.";
+  }
+};
+
+dsmPdfInput.onchange=e=>{
+
+  const file=e.target.files[0];
+
+  if(
+    file &&
+    file.type==="application/pdf"
+  ){
+
+    dsmPdfFile=file;
+
+    dsmPdfExtract.disabled=false;
+
+    dsmPdfStatus.textContent=
+    file.name+" loaded.";
+  }
+};
+
+/* ========================================================= */
+
+dsmPdfClear.onclick=()=>{
+
+  dsmPdfFile=null;
+
+  dsmPdfPages=[];
+
+  dsmPdfGallery.innerHTML="";
+
+  dsmPdfProgress.style.width="0%";
+
+  dsmPdfExtract.disabled=true;
+
+  dsmPdfStatus.textContent=
+  "Cleared.";
+};
+
+/* ========================================================= */
+
+dsmPdfExtract.onclick=async()=>{
+
+  if(!dsmPdfFile)return;
+
+  try{
+
+    dsmPdfStatus.textContent=
+    "Loading engine...";
+
+    await dsmLoadPDFJS();
+
+    const buffer=
+    await dsmPdfFile.arrayBuffer();
+
+    const pdf=
+    await pdfjsLib
+    .getDocument({data:buffer})
+    .promise;
+
+    dsmPdfGallery.innerHTML="";
+
+    dsmPdfPages=[];
+
+    const scale=
+    parseFloat(
+      document.getElementById("dsmPdfScale")
+      .value
+    );
+
+    const format=
+    document.getElementById("dsmPdfFormat")
+    .value;
+
+    for(let i=1;i<=pdf.numPages;i++){
+
+      dsmPdfStatus.textContent=
+      "Rendering page "+i;
+
+      dsmPdfProgress.style.width=
+      ((i/pdf.numPages)*100)+"%";
+
+      const page=
+      await pdf.getPage(i);
+
+      const viewport=
+      page.getViewport({scale});
+
+      const canvas=
+      document.createElement("canvas");
+
+      const ctx=
+      canvas.getContext("2d");
+
+      canvas.width=viewport.width;
+      canvas.height=viewport.height;
+
+      await page.render({
+        canvasContext:ctx,
+        viewport
+      }).promise;
+
+      const blob=
+      await new Promise(resolve=>{
+
+        canvas.toBlob(
+          resolve,
+          format,
+          1
+        );
+      });
+
+      const url=
+      URL.createObjectURL(blob);
+
+      dsmPdfPages.push({
+        blob,
+        url
+      });
+
+      const div=
+      document.createElement("div");
+
+      div.className="dsm-item";
+
+      div.innerHTML=`
+        <img src="${url}">
+        <div class="dsm-item-body">
+
+          <div class="dsm-item-name">
+            Page ${i}
+          </div>
+
+          <div class="dsm-item-meta">
+            ${dsmBytes(blob.size)}
+          </div>
+
+          <div style="margin-top:10px">
+
+            <button
+            class="dsm-btn dsm-green"
+            style="width:100%"
+            onclick="dsmDownloadPage(${i-1})">
+              Download
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+      dsmPdfGallery.appendChild(div);
+    }
+
+    dsmPdfStatus.textContent=
+    "Extraction complete.";
+
+  }catch(err){
+
+    console.error(err);
+
+    dsmPdfStatus.textContent=
+    "Error: "+err.message;
+  }
+};
+
+/* ========================================================= */
+
+window.dsmDownloadPage=index=>{
+
+  const item=
+  dsmPdfPages[index];
+
+  const a=
+  document.createElement("a");
+
+  a.href=item.url;
+
+  a.download=
+  "page_"+(index+1);
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+};
+
+/* =========================================================
+   HELPERS
+========================================================= */
 
 function dsmBytes(bytes){
 
